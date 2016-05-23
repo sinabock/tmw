@@ -122,7 +122,7 @@ def crop_images(inpath, outfolder, left, upper, right, lower):
 
 # TODO: Move this one one level up if several plotting functions use it.
 def get_firstWords(firstWordsFile):
-    """Load list of top topic words into dataframe."""
+    """Load list of top topic words into dataframe and return dataframe."""
     #print("  Getting firstWords.")
     with open(firstWordsFile, "r") as infile: 
         firstWords = pd.read_csv(infile, header=None)
@@ -132,7 +132,7 @@ def get_firstWords(firstWordsFile):
         return(firstWords)
 
 def get_targetItems(average, targetCategory):
-    """Get a list of items included in the target category."""
+    """Get a list of items included in the target category and return list."""
     print(" Getting targetItems for: "+targetCategory)
     with open(average, "r") as infile:
         averageTopicScores = pd.DataFrame.from_csv(infile, sep=",")
@@ -142,7 +142,7 @@ def get_targetItems(average, targetCategory):
         return(targetItems)    
      
 def get_dataToPlot(average, firstWordsFile, mode, topTopicsShown, item):
-    """Select data to be plotted from average topic score data."""
+    """Select data to be plotted from average topic score data and return plot."""
     #print("  Getting dataToPlot.")
     with open(average, "r") as infile:
         ## Read the average topic score data
