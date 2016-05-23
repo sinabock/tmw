@@ -1,8 +1,16 @@
+"""
+__author__ = "CLiGS"
+__authors__ = "Christof Schoech, Daniel Schloer"
+__email__ = "christof.schoech@uni-wuerzburg.de"
+__license__ = ""
+__version__ = "0.3.0"
+__date__ = 2016-03-20
+"""
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Filename: model.py
-# Authors: christofs, daschloer
-# Version 0.3.0 (2016-03-20)
+
 
 ##################################################################
 ###  Topic Modeling Workflow (tmw)                             ###
@@ -22,7 +30,7 @@ import subprocess
 
 
 def call_mallet_import(mallet_path, infolder, outfolder, outfile, stoplist_project):
-    """Function to import text data into Mallet."""
+    """Import text data into Mallet."""
     print("\nLaunched call_mallet_import.")    
     if not os.path.exists(outfolder):
         os.makedirs(outfolder)    
@@ -41,7 +49,7 @@ def call_mallet_import(mallet_path, infolder, outfolder, outfile, stoplist_proje
 #################################
 
 def call_mallet_modeling(mallet_path, inputfile,outfolder,numOfTopics,optimize_interval,num_iterations,num_top_words,doc_topics_max):
-    """Function to perform topic modeling with Mallet."""
+    """Perform topic modeling with Mallet."""
     print("\nLaunched call_mallet_modeling.")
 
     ### Getting ready.

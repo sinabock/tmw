@@ -1,8 +1,15 @@
+"""
+__author__ = "CLiGS"
+__authors__ = "Christof Schoech, Daniel Schloer"
+__email__ = "christof.schoech@uni-wuerzburg.de"
+__license__ = ""
+__version__ = "0.3.0"
+__date__ = 2016-03-20
+"""
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Filename: dev.py
-# Authors: christofs, daschloer
-# Version 0.3.0 (2016-03-20)
 
 ##################################################################
 ###  Topic Modeling Workflow (tmw)                             ###
@@ -32,7 +39,14 @@ import subprocess
 
 def get_selComplexProgression_dataToPlot(averageDataset, firstWordsFile, 
                                entriesShown, topics): 
-    """Function to build a dataframe with all data necessary for plotting."""
+	"""Built dataframe with all data necessary for plotting and return the dataframe.
+	
+	Keyword arguements:
+	averageDataset --
+	firstWordsFile --
+    entriesShown --
+	topics --
+	"""
     print("- getting data to plot...")
     with open(averageDataset, "r") as infile:
         allScores = pd.DataFrame.from_csv(infile, sep=",")
@@ -52,7 +66,7 @@ def get_selComplexProgression_dataToPlot(averageDataset, firstWordsFile,
     
 def create_selComplexProgression_lineplot(dataToPlot, outfolder, fontscale, 
                                 topics, dpi, height):
-    """This function does the actual plotting and saving to disk."""
+	"""Do the actual plotting and save results to disk."""
     print("- creating the plot...")
     ## Plot the selected data
     dataToPlot.plot(kind="line", lw=3, marker="o")
@@ -74,7 +88,7 @@ def create_selComplexProgression_lineplot(dataToPlot, outfolder, fontscale,
 
 def get_allComplexProgression_dataToPlot(averageDataset, firstWordsFile, 
                                          entriesShown, topic, targetCategories): 
-    """Function to build a dataframe with all data necessary for plotting."""
+	"""Build a dataframe with all data necessary for plotting and return dataframe"""
     print("- getting data to plot...")
     with open(averageDataset, "r") as infile:
         allScores = pd.DataFrame.from_csv(infile, sep=",", index_col=None)
@@ -156,7 +170,7 @@ def complexProgression(averageDataset,
                        fontscale, 
                        dpi, height, 
                        mode, topics):
-    """Function to plot topic development over textual progression."""
+    """Plot topic development over textual progression."""
     print("Launched complexProgression.")
     if mode == "sel": 
         entriesShown = numOfTopics
@@ -196,7 +210,8 @@ def complexProgression(averageDataset,
 
 import shutil
 
-def show_segment(wdir,segmentID, outfolder): 
+def show_segment(wdir,segmentID, outfolder):
+	"""Sow segments"""
     if not os.path.exists(outfolder):
         os.makedirs(outfolder)
     shutil.copyfile(wdir+"2_segs/"+segmentID+".txt",outfolder+segmentID+".txt")
@@ -212,7 +227,7 @@ from sklearn.decomposition import PCA
 
 #def build_itemScoreMatrix(averageDatasets, targetCategory, 
 #                          topicsPerItem, sortingCriterium):
-#    """Reads Mallet output (topics with words and word weights) into dataframe.""" 
+#    """Read Mallet output (topics with words and word weights) into dataframe.""" 
 #    print("- building item score matrix...")
 #    for averageFile in glob.glob(averageDatasets): 
 #        if targetCategory in averageFile:
@@ -230,6 +245,7 @@ from sklearn.decomposition import PCA
 
 def perform_itemPCA(itemScoreMatrix, targetCategory, topicsPerItem, 
                     sortingCriterium, figsize, outfolder):
+	"""Do clustering on the dataframe"""
     print("- doing the PCA...")
     itemScoreMatrix = itemScoreMatrix.T
     targetDimensions = 2
@@ -243,7 +259,7 @@ def perform_itemPCA(itemScoreMatrix, targetCategory, topicsPerItem,
 
 def itemPCA(averageDatasets, targetCategories, 
             topicsPerItem, sortingCriterium, figsize, outfolder): 
-    """Function to perform PCA on per-item topic scores and plot the result."""
+    """Perform PCA on per-item topic scores and plot the result."""
     print("Launched itemPCA.")
     for targetCategory in targetCategories: 
         ## Load topic scores per item and turn into score matrix
