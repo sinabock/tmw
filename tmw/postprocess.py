@@ -4,7 +4,7 @@ __authors__ = "Christof Schoech, Daniel Schloer"
 __email__ = "christof.schoech@uni-wuerzburg.de"
 __license__ = ""
 __version__ = "0.3.0"
-__date__ = 2016-03-20
+__date__ = "2016-03-20"
 """
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -31,13 +31,25 @@ import numpy as np
 
 def get_metadata(metadatafile):
     print("- getting metadata...")
-    """Read metadata file, create DataFrame and return metadata."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Read metadata file, create DataFrame and return metadata.
+	"""
     metadata = pd.DataFrame.from_csv(metadatafile, header=0, sep=",")
     #print("metadata\n", metadata)
     return metadata
 
 def get_topicscores(topics_in_texts, numOfTopics, version): 
-    """Create a matrix of segments x topics, with topic score values, from Mallet output and return topicscores.""" 
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Create a matrix of segments x topics, with topic score values, from Mallet output and return topicscores.
+	""" 
     print("- getting topicscores...")  
     
     if version == "207":
@@ -96,7 +108,13 @@ def get_topicscores(topics_in_texts, numOfTopics, version):
 
         
 def get_docmatrix(corpuspath):
-    """Create a matrix containing segments with their idnos and return the matrix."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Create a matrix containing segments with their idnos and return the matrix.
+	"""
     print("- getting docmatrix...")
     ## Create dataframe with filenames of segments and corresponding idnos.
     segs = []
@@ -114,7 +132,13 @@ def get_docmatrix(corpuspath):
     
 def merge_data(corpuspath, metadatafile, topics_in_texts, mastermatrixfile, 
                numOfTopics, version):
-    """Merges the three dataframes into one mastermatrix and return the mastermatrix."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Merges the three dataframes into one mastermatrix and return the mastermatrix.
+	"""
     print("- getting data...")
     ## Get all necessary data.
     metadata = get_metadata(metadatafile)
@@ -137,7 +161,13 @@ def merge_data(corpuspath, metadatafile, topics_in_texts, mastermatrixfile,
     return mastermatrix
 
 def add_binData(mastermatrix, binDataFile):
-	"""Add binary data to the mastermatrix and return the mastermatrix."""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Add binary data to the mastermatrix and return the mastermatrix.
+	"""
     print("- adding bin data...")
     ## Read the information about bins
     binData = pd.read_csv(binDataFile, sep=",")
@@ -149,7 +179,13 @@ def add_binData(mastermatrix, binDataFile):
 
 def create_mastermatrix(corpuspath, outfolder, mastermatrixfile, metadatafile, 
                         topics_in_texts, numOfTopics, useBins, binDataFile, version):
-    """Build the mastermatrix uniting all information about texts and topic scores."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Build the mastermatrix uniting all information about texts and topic scores.
+	"""
     print("\nLaunched create_mastermatrix.")
     if not os.path.exists(outfolder):
         os.makedirs(outfolder)
@@ -167,7 +203,13 @@ def create_mastermatrix(corpuspath, outfolder, mastermatrixfile, metadatafile,
 ################################
 
 def calculate_averageTopicScores(mastermatrixfile, targets, outfolder):
-    """Calculate average topic scores based on the mastermatrix."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Calculate average topic scores based on the mastermatrix.
+	"""
     print("\nLaunched calculate_averageTopicScores.")
     if not os.path.exists(outfolder):
         os.makedirs(outfolder)
@@ -197,7 +239,13 @@ def calculate_averageTopicScores(mastermatrixfile, targets, outfolder):
 ################################
 
 def calculate_complexAverageTopicScores(mastermatrixfile, targets, outfolder):
-    """Calculate average topic scores based on the mastermatrix."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Calculate average topic scores based on the mastermatrix.
+	"""
     print("\nLaunched calculate_complexAverageTopicScores.")
     if not os.path.exists(outfolder):
         os.makedirs(outfolder)
@@ -225,7 +273,13 @@ def calculate_complexAverageTopicScores(mastermatrixfile, targets, outfolder):
 #################################
 
 def save_firstWords(topicWordFile, outfolder, filename):
-    """Save a table of topics with their three most important words for each topic."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Save a table of topics with their three most important words for each topic.
+	"""
     print("Launched save_someFirstWords.")
     with open(topicWordFile, "r") as infile:
         firstWords = {}
@@ -260,7 +314,13 @@ def save_firstWords(topicWordFile, outfolder, filename):
 #################################
 
 def save_topicRanks(topicWordFile, outfolder, filename):
-    """Save a list of topics with their rank by topic score."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Save a list of topics with their rank by topic score.
+	"""
     print("Launched save_topicRanks.")
     with open(topicWordFile, "r") as infile:
         topicRanks = pd.read_csv(infile, sep="\t", header=None)

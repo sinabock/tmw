@@ -3,6 +3,15 @@
 # Author: #cf
 # Version 0.2.0 (2015-08-27)
 
+"""
+__author__ = "CLiGS"
+__authors__ = "Christof Schoech, Daniel Schloer"
+__email__ = "christof.schoech@uni-wuerzburg.de"
+__license__ = ""
+__version__ = "0.2.0"
+__date__ = "2015-08-27"
+"""
+
 
 ##################################################################
 ###  CONFIG FILE for: Topic Modeling Workflow (tmw)            ###

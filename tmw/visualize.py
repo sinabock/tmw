@@ -4,7 +4,7 @@ __authors__ = "Christof Schoech, Daniel Schloer"
 __email__ = "christof.schoech@uni-wuerzburg.de"
 __license__ = ""
 __version__ = "0.3.0"
-__date__ = 2016-03-2
+__date__ = "2016-03-2"
 """
 
 #!/usr/bin/env python3
@@ -34,7 +34,13 @@ import seaborn as sns
 #################################
 
 def read_mallet_output(word_weights_file):
-    """Read Mallet output (topics with words and word weights) into dataframe and return grouped word-scores""" 
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Read Mallet output (topics with words and word weights) into dataframe and return grouped word-scores.
+	""" 
     word_scores = pd.read_table(word_weights_file, header=None, sep="\t")
     word_scores = word_scores.sort(columns=[0,2], axis=0, ascending=[True, False])
     word_scores_grouped = word_scores.groupby(0)
@@ -42,7 +48,13 @@ def read_mallet_output(word_weights_file):
     return word_scores_grouped
 
 def get_wordlewords(words, word_weights_file, topic):
-    """Transform Mallet output for wordle generation and return wordle."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Transform Mallet output for wordle generation and return wordle.
+	"""
     topic_word_scores = read_mallet_output(word_weights_file).get_group(topic)
     top_topic_word_scores = topic_word_scores.iloc[0:words]
     topic_words = top_topic_word_scores.loc[:,1].tolist()
@@ -57,7 +69,13 @@ def get_wordlewords(words, word_weights_file, topic):
     return wordlewords
         
 def get_color_scale(word, font_size, position, orientation, font_path, random_state=None):
-    """ Create color scheme for wordle and return rank."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Create color scheme for wordle and return rank.
+	"""
     return "hsl(245, 58%, 25%)" # Default. Uniform dark blue.
     #return "hsl(0, 00%, %d%%)" % random.randint(80, 100) # Greys for black background.
     #return "hsl(221, 65%%, %d%%)" % random.randint(30, 35) # Dark blues for white background
@@ -76,7 +94,13 @@ def make_wordle_from_mallet(word_weights_file,
                             outfolder,
                             font_path, 
                             dpi):
-    """Generate wordles from Mallet output, using the wordcloud module."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Generate wordles from Mallet output, using the wordcloud module.
+	"""
     print("\nLaunched make_wordle_from_mallet.")
     for topic in range(0,num_topics):
         ## Gets the text for one topic.
@@ -100,7 +124,13 @@ def make_wordle_from_mallet(word_weights_file,
     print("Done.")
     
 def crop_images(inpath, outfolder, left, upper, right, lower):
-    """ Crop wordle files."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Crop wordle files.
+	"""
     print("Launched crop_images.")
     from PIL import Image
 
@@ -122,7 +152,13 @@ def crop_images(inpath, outfolder, left, upper, right, lower):
 
 # TODO: Move this one one level up if several plotting functions use it.
 def get_firstWords(firstWordsFile):
-    """Load list of top topic words into dataframe and return dataframe."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Load list of top topic words into dataframe and return dataframe.
+	"""
     #print("  Getting firstWords.")
     with open(firstWordsFile, "r") as infile: 
         firstWords = pd.read_csv(infile, header=None)
@@ -132,7 +168,13 @@ def get_firstWords(firstWordsFile):
         return(firstWords)
 
 def get_targetItems(average, targetCategory):
-    """Get a list of items included in the target category and return list."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Get a list of items included in the target category and return list.
+	"""
     print(" Getting targetItems for: "+targetCategory)
     with open(average, "r") as infile:
         averageTopicScores = pd.DataFrame.from_csv(infile, sep=",")
@@ -142,7 +184,13 @@ def get_targetItems(average, targetCategory):
         return(targetItems)    
      
 def get_dataToPlot(average, firstWordsFile, mode, topTopicsShown, item):
-    """Select data to be plotted from average topic score data and return plot."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Select data to be plotted from average topic score data and return plot.
+	"""
     #print("  Getting dataToPlot.")
     with open(average, "r") as infile:
         ## Read the average topic score data
@@ -172,7 +220,13 @@ def get_dataToPlot(average, firstWordsFile, mode, topTopicsShown, item):
 
 def create_barchart_topTopics(dataToPlot, targetCategory, mode, item, 
                               fontscale, height, dpi, outfolder):
-    """Make a topTopics barchart."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Make a topTopics barchart.
+	"""
     print("  Creating plot for: "+str(item))
     ## Doing the plotting.
     dataToPlot.plot(kind="bar", legend=None) 
@@ -199,7 +253,13 @@ def create_barchart_topTopics(dataToPlot, targetCategory, mode, item,
 def plot_topTopics(averageDatasets, firstWordsFile, numberOfTopics, 
                    targetCategories, mode, topTopicsShown, fontscale, 
                    height, dpi, outfolder): 
-    """Plot the top n topics as a barchart for each item in a category."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Plot the top n topics as a barchart for each item in a category.
+	"""
     print("Launched plot_topTopics.")
     for average in glob.glob(averageDatasets):
         for targetCategory in targetCategories: 
@@ -217,7 +277,13 @@ def plot_topTopics(averageDatasets, firstWordsFile, numberOfTopics,
 #################################
 
 def get_topItems_firstWords(firstWordsFile, topic):
-    """Load list of top topic words into dataframe and return top topic words."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Load list of top topic words into dataframe and return top topic words.
+	"""
     #print("  Getting firstWords.")
     with open(firstWordsFile, "r") as infile: 
         firstWords = pd.DataFrame.from_csv(infile, header=None)
@@ -228,7 +294,13 @@ def get_topItems_firstWords(firstWordsFile, topic):
         return(firstWords)
 
 def get_topItems_dataToPlot(average, firstWordsFile, topItemsShown, topic):
-    """Select data to be plotted from average topic score data and return data plot."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Select data to be plotted from average topic score data and return data plot.
+	"""
     #print("  Getting dataToPlot.")
     with open(average, "r") as infile:
         ## Read the average topic score data
@@ -243,7 +315,13 @@ def get_topItems_dataToPlot(average, firstWordsFile, topItemsShown, topic):
 
 def create_topItems_barchart(dataToPlot, firstWords, targetCategory, topic, 
                               fontscale, height, dpi, outfolder):
-    """Make a topItems barchart."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Make a topItems barchart.
+	"""
     print("  Creating plot for topic: "+str(topic))
     ## Doing the plotting.
     dataToPlot.plot(kind="bar", legend=None) 
@@ -273,7 +351,13 @@ def plot_topItems(averageDatasets,
                   fontscale, 
                   height, 
                   dpi): 
-    """Visualize topic score distribution data as barchart."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Visualize topic score distribution data as barchart.
+	"""
     print("Launched plot_topItems")
     for average in glob.glob(averageDatasets):
         for targetCategory in targetCategories:
@@ -306,7 +390,13 @@ def plot_topItems(averageDatasets,
 
 # TODO: This next function could be merged with above.
 def get_heatmap_firstWords(firstWordsFile):
-    """Load list of top topic words into dataframe and return top topic words."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Load list of top topic words into dataframe and return top topic words.
+	"""
     #print("  Getting firstWords.")
     with open(firstWordsFile, "r") as infile: 
         firstWords = pd.read_csv(infile, header=None)
@@ -317,7 +407,13 @@ def get_heatmap_firstWords(firstWordsFile):
 
 def get_heatmap_dataToPlot(average, mode, sorting, firstWordsFile, topTopicsShown, 
                            numOfTopics):
-	"""Select data to be plotted from average topic score data and return data plot."""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Select data to be plotted from average topic score data and return data plot.
+	"""
     print("- getting dataToPlot...")
     with open(average, "r") as infile:
         ## Read the average topic score data
@@ -377,7 +473,13 @@ def create_distinctiveness_heatmap(dataToPlot,
                                    fontscale,
                                    dpi, 
                                    outfolder):
-	"""Create data_plot as heatmap."""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Create data_plot as heatmap.
+	"""
     sns.set_context("poster", font_scale=fontscale)
     sns.heatmap(dataToPlot, annot=False, cmap="RdBu_r", square=False)
     # Nice: bone_r, copper_r, PuBu, OrRd, GnBu, BuGn, YlOrRd, RdBu_r
@@ -406,7 +508,13 @@ def plot_distinctiveness_heatmap(averageDatasets,
                                  topTopicsShown, 
                                  fontscale, 
                                  dpi):
-    """Visualize topic score distribution data as heatmap. """
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Visualize topic score distribution data as heatmap.
+	"""
     print("Launched plot_distinctiveness_heatmap.")
     for average in glob.glob(averageDatasets):
         for targetCategory in targetCategories: 
@@ -434,7 +542,13 @@ def plot_distinctiveness_heatmap(averageDatasets,
 #################################
 
 def get_overTime_firstWords(firstWordsFile):
-    """Load list of top topic words into dataframe and return top topic words."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Load list of top topic words into dataframe and return top topic words.
+	"""
     #print("  Getting firstWords.")
     with open(firstWordsFile, "r") as infile: 
         firstWords = pd.read_csv(infile, header=None)
@@ -445,7 +559,13 @@ def get_overTime_firstWords(firstWordsFile):
         return(firstWords)
 
 def get_overTime_dataToPlot(average, firstWordsFile, entriesShown, topics): 
-    """Build a dataframe with all data necessary for plotting."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Build a dataframe with all data necessary for plotting.
+	"""
     #print("  Getting data to plot.")
     with open(average, "r") as infile:
         allScores = pd.DataFrame.from_csv(infile, sep=",")
@@ -463,7 +583,13 @@ def get_overTime_dataToPlot(average, firstWordsFile, entriesShown, topics):
         return dataToPlot
 
 def create_overTime_lineplot(dataToPlot, outfolder, fontscale, topics, dpi, height):
-    """Create Over-Time-Line-plot and save results to disk."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Create Over-Time-Line-plot and save results to disk.
+	"""
     print("  Creating lineplot for selected topics.")
     ## Plot the selected data
     dataToPlot.plot(kind="line", lw=3, marker="o")
@@ -484,7 +610,13 @@ def create_overTime_lineplot(dataToPlot, outfolder, fontscale, topics, dpi, heig
     plt.close()
 
 def create_overTime_areaplot(dataToPlot, outfolder, fontscale, topics, dpi):
-    """Create Over-Time-Area-plot and save results to disk."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Create Over-Time-Area-plot and save results to disk.
+	"""
     print("  Creating areaplot for selected topics.")
     ## Turn absolute data into percentages.
     dataToPlot = dataToPlot.apply(lambda c: c / c.sum() * 100, axis=1)
@@ -508,7 +640,13 @@ def create_overTime_areaplot(dataToPlot, outfolder, fontscale, topics, dpi):
 def plot_topicsOverTime(averageDatasets, firstWordsFile, outfolder, 
                         numberOfTopics, fontscale, dpi, height,  
                         mode, topics):
-    """Plot development of topics over time using lineplots or areaplots."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Plot development of topics over time using lineplots or areaplots.
+	"""
     print("Launched plot_topicsOverTime.")
     if mode == "line": 
         for average in glob.glob(averageDatasets):
@@ -541,7 +679,13 @@ def plot_topicsOverTime(averageDatasets, firstWordsFile, outfolder,
 import scipy.cluster as sc
 
 def get_topWordScores(wordWeightsFile, WordsPerTopic):
-    """Read Mallet output (topics with words and word weights) into dataframe and return top-word-scores.""" 
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Read Mallet output (topics with words and word weights) into dataframe and return top-word-scores.
+	""" 
     print("- getting topWordScores...")
     wordScores = pd.read_table(wordWeightsFile, header=None, sep="\t")
     wordScores = wordScores.sort(columns=[0,2], axis=0, ascending=[True, False])
@@ -550,7 +694,13 @@ def get_topWordScores(wordWeightsFile, WordsPerTopic):
     return topWordScores
 
 def build_scoreMatrix(topWordScores, topicsToUse):
-    """Transform Mallet output for wordle generation and return a matrix of scores."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Transform Mallet output for wordle generation and return a matrix of scores.
+	"""
     print("- building score matrix...")
     topWordScores = topWordScores.groupby(0)
     listOfWordScores = []
@@ -568,7 +718,13 @@ def build_scoreMatrix(topWordScores, topicsToUse):
     return scoreMatrix
 
 def perform_topicClustering(scoreMatrix, method, metric, wordsPerTopic, outfolder):
-	"""Perform topic clustering."""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Perform topic clustering.
+	"""
     print("- performing clustering...")
     distanceMatrix = sc.hierarchy.linkage(scoreMatrix, method=method, metric=metric)
     #print(distanceMatrix)
@@ -590,7 +746,13 @@ def perform_topicClustering(scoreMatrix, method, metric, wordsPerTopic, outfolde
 
 def topicClustering(wordWeightsFile, wordsPerTopic, outfolder, 
                     methods, metrics, topicsToUse):
-    """Display dendrogram of topic similarity using clustering."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Display dendrogram of topic similarity using clustering.
+	"""
     print("\nLaunched topicClustering.")
     ## Gets the necessary data: the word scores for each topic
     topWordScores = get_topWordScores(wordWeightsFile, wordsPerTopic)
@@ -612,7 +774,13 @@ def topicClustering(wordWeightsFile, wordsPerTopic, outfolder,
 
 def build_itemScoreMatrix(averageDatasets, targetCategory, 
                           topicsPerItem, sortingCriterium):
-    """Read Mallet output (topics with words and word weights) into dataframe and return a matrix of item-scores.""" 
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Read Mallet output (topics with words and word weights) into dataframe and return a matrix of item-scores.
+	""" 
     print("- getting topWordScores...")
     for averageFile in glob.glob(averageDatasets): 
         if targetCategory in averageFile:
@@ -631,7 +799,13 @@ def build_itemScoreMatrix(averageDatasets, targetCategory,
 
 def perform_itemClustering(itemScoreMatrix, targetCategory, method, metric, 
                            topicsPerItem, sortingCriterium, figsize, outfolder):
-	"""Perform item clustering"""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Perform item clustering.
+	"""
     print("- performing clustering...")
 
     ## Perform the actual clustering
@@ -659,7 +833,13 @@ def perform_itemClustering(itemScoreMatrix, targetCategory, method, metric,
     
 def itemClustering(averageDatasets, figsize, outfolder, topicsPerItem, 
                    targetCategories, methods, metrics, sortingCriterium):
-    """Display dendrogram of topic-based item similarity using clustering."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Display dendrogram of topic-based item similarity using clustering.
+	"""
     print("\nLaunched itemClustering.")
     for targetCategory in targetCategories: 
         ## Load topic scores per itema and turn into score matrix
@@ -682,7 +862,13 @@ def itemClustering(averageDatasets, figsize, outfolder, topicsPerItem,
 
 
 def get_progression_firstWords(firstWordsFile):
-    """Load list of top topic words into dataframe and return dataframe."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Load list of top topic words into dataframe and return dataframe.
+	"""
     #print("  Getting firstWords.")
     with open(firstWordsFile, "r") as infile: 
         firstWords = pd.read_csv(infile, header=None)
@@ -695,7 +881,13 @@ def get_progression_firstWords(firstWordsFile):
 
 def get_selSimpleProgression_dataToPlot(averageDataset, firstWordsFile, 
                                entriesShown, topics): 
-    """Build a dataframe with all data necessary for plotting and return dataframe."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Build a dataframe with all data necessary for plotting and return dataframe.
+	"""
     print("- getting data to plot...")
     with open(averageDataset, "r") as infile:
         allScores = pd.DataFrame.from_csv(infile, sep=",")
@@ -715,7 +907,13 @@ def get_selSimpleProgression_dataToPlot(averageDataset, firstWordsFile,
     
 def create_selSimpleProgression_lineplot(dataToPlot, outfolder, fontscale, 
                                 topics, dpi, height):
-    """Create simple-progression-line-plot and save results to disk."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Create simple-progression-line-plot and save results to disk.
+	"""
     print("- creating the plot...")
     ## Plot the selected data
     dataToPlot.plot(kind="line", lw=3, marker="o")
@@ -737,7 +935,13 @@ def create_selSimpleProgression_lineplot(dataToPlot, outfolder, fontscale,
 
 def get_allSimpleProgression_dataToPlot(averageDataset, firstWordsFile, 
                                entriesShown, topic): 
-    """Build a dataframe with all data necessary for plotting and return dataframe."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Build a dataframe with all data necessary for plotting and return dataframe.
+	"""
     print("- getting data to plot...")
     with open(averageDataset, "r") as infile:
         allScores = pd.DataFrame.from_csv(infile, sep=",")
@@ -755,7 +959,13 @@ def get_allSimpleProgression_dataToPlot(averageDataset, firstWordsFile,
     
 def create_allSimpleProgression_lineplot(dataToPlot, outfolder, fontscale, 
                                 firstWordsFile, topic, dpi, height):
-    """Create simple-progression-line-plot and save results to disk."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Create simple-progression-line-plot and save results to disk.
+	"""
     print("- creating the plot for topic " + topic)
     ## Get the first words info for the topic
     firstWords = get_progression_firstWords(firstWordsFile)
@@ -783,7 +993,13 @@ def create_allSimpleProgression_lineplot(dataToPlot, outfolder, fontscale,
 def simpleProgression(averageDataset, firstWordsFile, outfolder, 
                            numOfTopics, 
                            fontscale, dpi, height, mode, topics):
-    """Plot topic development over textual progression."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Plot topic development over textual progression.
+	"""
     print("Launched textualProgression.")
     if mode == "selected" or mode == "sel": 
         entriesShown = numOfTopics
@@ -811,7 +1027,11 @@ def simpleProgression(averageDataset, firstWordsFile, outfolder,
     print("Done.")
 
 def main(word_weights_file, num_topics, words, topicRanksFile, outfolder, font_path, dpi):
-	""""""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+"""
     make_wordle_from_mallet(word_weights_file, num_topics, words, topicRanksFile, outfolder, font_path, dpi)
 #    crop_images(inpath, outfolder, left, upper, right, lower)
 #    plot_topTopics(averageDatasets, firstWordsFile, numberOfTopics, targetCategories, topTopicsShown, fontscale, height, dpi, outfolder)

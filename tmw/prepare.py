@@ -4,7 +4,7 @@ __authors__ = "Christof Schoech, Daniel Schloer"
 __email__ = "christof.schoech@uni-wuerzburg.de"
 __license__ = ""
 __version__ = "0.3.0"
-__date__ = 2016-03-20
+__date__ = "2016-03-20"
 """
 
 #!/usr/bin/env python3
@@ -37,9 +37,13 @@ from lxml import etree
 
 def read_tei5(teiPath, txtFolder, xpath):
     """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
     Extract selected text from TEI P5 files and write TXT files.
     
-	Keyword arguements:
+	Keyword arguments:
 	xpath (string): "alltext", "bodytext, "seg" or "said".
     """
     if not os.path.exists(txtFolder):
@@ -112,7 +116,13 @@ def read_tei5(teiPath, txtFolder, xpath):
 
 # Utility function for writing segments
 def writesegment(segment, outfolder, filename, counter, mode="w"):
-	"""Write segments."""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Write segments.
+	"""
     segname = join(outfolder, filename + "§{:04d}".format(counter) + ".txt")
     with open(segname, mode) as output:
         output.write(' '.join(segment))
@@ -122,7 +132,13 @@ def writesegment(segment, outfolder, filename, counter, mode="w"):
 
 # Utility function for writing into files
 def write(segment, file, mode = "w"):
-	"""Write segments into files."""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Write segments into files.
+	"""
     with open(file, mode) as output:
         output.write(' '.join(segment))
         output.close()
@@ -134,7 +150,13 @@ currentsegmentsize = 0
 
 # Utility function for writing segments
 def writesegment(segment, outfolder, filename, target, tolerancefactor, preserveparagraphs):
-	"""Write segments."""
+	"""
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Write segments.
+	"""
     from os.path import join
     global currentsegmentsize
     global counter
@@ -215,7 +237,13 @@ def writesegment(segment, outfolder, filename, target, tolerancefactor, preserve
     write(segment, segname, "a")
 
 def segmenter(inpath, outfolder, target, sizetolerancefactor, preserveparagraphs = False):
-    """Turning plain text files into equal-sized segments, with limited respect for paragraph boundaries."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Turning plain text files into equal-sized segments, with limited respect for paragraph boundaries.
+	"""
     print("\nLaunched segmenter.")
 
     from os.path import join
@@ -262,6 +290,10 @@ def segmenter(inpath, outfolder, target, sizetolerancefactor, preserveparagraphs
 
 def segments_to_bins(inpath, outfolder, binsnb):
     """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
     Sorting text segments into bins.
     """
     print("\nLaunched segments_to_bins.")
@@ -361,7 +393,13 @@ def segments_to_bins(inpath, outfolder, binsnb):
 #################################
 
 def call_treetagger(infolder, outfolder, tagger):
-    """Call TreeTagger from Python"""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Call TreeTagger from Python.
+	"""
     print("\nLaunched call_treetagger.")
     inpath = infolder + "*.txt"
     infiles = glob.glob(inpath)
@@ -384,7 +422,13 @@ def call_treetagger(infolder, outfolder, tagger):
 #################################
 
 def make_lemmatext(inpath, outfolder, mode, stoplist_errors):
-    """Extract lemmas from TreeTagger output."""
+    """
+	__author__ = "CLiGS"
+	__authors__ = ""
+	__email__ = ""
+
+	Extract lemmas from TreeTagger output.
+	"""
     print("\nLaunched make_lemmatext.")
 
     if not os.path.exists(outfolder):

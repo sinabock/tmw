@@ -4,6 +4,13 @@
 # Author: Christof Schöch
 
 """
+__author__ = "CLiGS"
+__authors__ = "Christof Schoech, Daniel Schloer"
+__email__ = "christof.schoech@uni-wuerzburg.de"
+__license__ = ""
+__version__ = ""
+__date__ = ""
+
 # Script to print versions of all dependencies. 
 """
 
